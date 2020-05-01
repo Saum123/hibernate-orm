@@ -91,4 +91,17 @@ public class Node {
 		// and TIMESTAMP datatypes.
 		return new Date( new java.util.Date().getTime() );
 	}
+
+	public Set<Node> getAllChildrenIncludingSelf() {
+		Set<Node> childSet = new HashSet<>();
+		getAllDescendants( this, childSet );
+		return childSet;
+	}
+
+	private void getAllDescendants(Node node, Set<Node> childSet) {
+		childSet.add( node );
+		for (Object childNode : node.getChildren()) {
+			getAllDescendants( (Node) childNode, childSet );
+		}
+	}
 }
