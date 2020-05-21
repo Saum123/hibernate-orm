@@ -340,6 +340,11 @@ public class MetadataSources implements Serializable {
 		getXmlBindingsForWrite().add( new CacheableFileXmlSource( origin, file, false ).doBind( getXmlMappingBinderAccess().getMappingBinder() ) );
 	}
 
+	public MetadataSources addCacheableFileNew(CacheableFileXmlSource cacheableFileXmlSource) {
+		getXmlBindingsForWrite().add(cacheableFileXmlSource.doBind( getXmlMappingBinderAccess().getMappingBinder() ));
+		return this;
+	}
+
 	/**
 	 * Add a cached mapping file.  A cached file is a serialized representation of the DOM structure of a
 	 * particular mapping.  It is saved from a previous call as a file with the name {@code {xmlFile}.bin}
